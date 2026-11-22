@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="mai">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मिथिला विवाह निमंत्रण | माधव संग जानकी (Maithil Wedding)</title>
+    <!-- Google Fonts for Traditional Indian & Maithili Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Rozha+One&family=Yatra+One&family=Marcellus&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. KOHBAR WAX SEAL ENVELOPE OVERLAY -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="envelope-base"></div>
+                <div class="envelope-letter" id="envelopeLetter">
+                    <p class="letter-sitaram">॥ श्री सीतारामाभ्यां नमः ॥</p>
+                    <p class="letter-guest-to" id="envelopeGuestName">॥ शुभ विवाहक नेवता ॥</p>
+                    <h2 class="letter-title">माधव &amp; जानकी</h2>
+                    <div class="letter-sub">अहाँक सपरिवार सादर आमंत्रण अछि</div>
+                    <p class="letter-date">सोमवार, 22 फरवरी 2027</p>
+                    <p class="letter-venue">मिथिला हेरिटेज वाटिका, मधुबनी, बिहार</p>
+                </div>
+                <div class="envelope-pocket"></div>
+                <div class="envelope-flap" id="envelopeFlap"></div>
+                <!-- Madhubani Fish & Lotus Wax Seal -->
+                <div class="wax-seal" id="waxSeal" role="button" tabindex="0" title="नेवता खोलू (Tap to Open)">
+                    <div class="seal-circle">
+                        <span class="seal-monogram">म 🪷 जा</span>
+                        <span class="seal-label">नेवता खोलू</span>
+                    </div>
+                </div>
+            </div>
+            <p class="envelope-hint">🪷 मिथिलाक पावन नेवता खोलबाक लेल सील पर टैप करू 🪷<br><span style="font-size:0.85em; opacity:0.85;">(Tap the Sacred Kohbar Seal to Open)</span></p>
+            <button id="skipEnvelopeBtn" class="skip-envelope-btn">सीधे निमंत्रण पर जाऊ (Skip to Invitation) &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Floating Audio Control & Petal Toggle -->
+    <div class="floating-controls">
+        <button id="musicToggle" class="control-btn" title="Toggle Maithili Folk Music">
+            <i class="fas fa-music"></i>
+            <span class="btn-label">राग-गीत</span>
+        </button>
+        <button id="petalToggle" class="control-btn" title="Toggle Flowers">
+            <i class="fas fa-spa"></i>
+            <span class="btn-label">पुष्प वर्षा</span>
+        </button>
+    </div>
+
+    <!-- Audio element with Gaurangi Gauri Ji's 'Charon Dulha Me Badka Kamaal Sakhiya' -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="raag_geet.mp3" type="audio/mpeg">
+        <source src="raag_geet.wav" type="audio/wav">
+    </audio>
+
+    <!-- Canvas for Floating Marigold, Lotus & Sparkles -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- Corner Glowing Mithila Earthen Diyas -->
+    <div class="corner-diya diya-left" aria-hidden="true">
+        <div class="diya-glow"></div>
+        <svg class="diya-svg" viewBox="0 0 100 80">
+            <defs>
+                <radialGradient id="flameGrad" cx="50%" cy="80%" r="70%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="30%" stop-color="#ffe600" />
+                    <stop offset="65%" stop-color="#ff5722" />
+                    <stop offset="100%" stop-color="rgba(255, 0, 0, 0)" />
+                </radialGradient>
+                <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e2725b" />
+                    <stop offset="40%" stop-color="#a93226" />
+                    <stop offset="100%" stop-color="#641e16" />
+                </linearGradient>
+            </defs>
+            <path class="diya-flame" d="M50,8 Q64,34 50,48 Q36,34 50,8 Z" fill="url(#flameGrad)" />
+            <circle class="diya-core" cx="50" cy="38" r="3.5" fill="#ffffff" />
+            <path d="M18,48 C18,70 82,70 82,48 C76,55 64,59 50,59 C36,59 24,55 18,48 Z" fill="url(#terracottaGrad)" stroke="#261c14" stroke-width="1.5" />
+            <ellipse cx="50" cy="48" rx="32" ry="6" fill="#78281f" />
+            <path d="M42,67 L58,67 L55,73 L45,73 Z" fill="url(#terracottaGrad)" />
+        </svg>
+    </div>
+
+    <div class="corner-diya diya-right" aria-hidden="true">
+        <div class="diya-glow"></div>
+        <svg class="diya-svg" viewBox="0 0 100 80">
+            <path class="diya-flame" d="M50,8 Q64,34 50,48 Q36,34 50,8 Z" fill="url(#flameGrad)" />
+            <circle class="diya-core" cx="50" cy="38" r="3.5" fill="#ffffff" />
+            <path d="M18,48 C18,70 82,70 82,48 C76,55 64,59 50,59 C36,59 24,55 18,48 Z" fill="url(#terracottaGrad)" stroke="#261c14" stroke-width="1.5" />
+            <ellipse cx="50" cy="48" rx="32" ry="6" fill="#78281f" />
+            <path d="M42,67 L58,67 L55,73 L45,73 Z" fill="url(#terracottaGrad)" />
+        </svg>
+    </div>
+
+    <div class="royal-wrapper madhubani-wrapper">
+        <!-- Auspicious Maithili Header -->
+        <header class="auspicious-header mithila-header">
+            <!-- Rotating Madhubani Kohbar Mandala -->
+            <div class="mandala-spin-bg header-mandala" aria-hidden="true">
+                <svg viewBox="0 0 200 200" class="mandala-vector">
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3" />
+                    <circle cx="100" cy="100" r="82" fill="none" stroke="currentColor" stroke-width="1.2" />
+                    <circle cx="100" cy="100" r="68" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,4" />
+                    <circle cx="100" cy="100" r="48" fill="none" stroke="currentColor" stroke-width="2" />
+                    <!-- Madhubani 8 Fish & Lotus Pattern -->
+                    <g stroke="currentColor" stroke-width="1.5" fill="none">
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(45 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(90 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(135 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(180 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(225 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(270 100 100)" />
+                        <path d="M100,50 Q115,75 100,100 Q85,75 100,50" transform="rotate(315 100 100)" />
+                    </g>
+                    <!-- Mithila Bamboo & Sun Rays -->
+                    <g stroke="currentColor" stroke-width="1.5">
+                        <line x1="100" y1="4" x2="100" y2="16" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(45 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(90 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(135 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(180 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(225 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(270 100 100)" />
+                        <line x1="100" y1="4" x2="100" y2="16" transform="rotate(315 100 100)" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Sacred Sita-Ram Kohbar Emblem -->
+            <div class="sitaram-symbol">
+                <svg viewBox="0 0 100 100" class="sitaram-svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#a93226" stroke-width="2.5" stroke-dasharray="4,3"/>
+                    <path d="M30 65 Q50 30 70 65 Q50 50 30 65 Z" fill="#e5a93c" stroke="#a93226" stroke-width="2"/>
+                    <!-- Bow & Arrow (Pinaka / Sita-Ram Dhanush) -->
+                    <path d="M25 50 Q50 20 75 50" fill="none" stroke="#8b1e19" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="25" y1="50" x2="75" y2="50" stroke="#a93226" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <line x1="50" y1="20" x2="50" y2="60" stroke="#e5a93c" stroke-width="2"/>
+                    <polygon points="50,15 46,24 54,24" fill="#a93226"/>
+                    <circle cx="50" cy="35" r="3" fill="#a93226"/>
+                </svg>
+            </div>
+            <p class="ganesha-mantra maithili-title">॥ श्री सीतारामाभ्यां नमः ॥</p>
+            <p class="sub-mantra vidyapati-verse">
+                "सीता के राम भेलैन्हि वर, मिथिला नगरिया निहाल सखिया... चारु दुलहा में बड़का कमाल सखिया!"
+            </p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="ornamental-frame madhubani-border">
+                <!-- Personalized Guest Greeting Banner -->
+                <div class="guest-welcome-banner" id="guestWelcomeBanner">
+                    <span class="guest-badge-icon">🪷</span>
+                    <div class="guest-text-group">
+                        <span class="guest-sub-label">॥ मिथिलाक पावन नेवता ॥</span>
+                        <h4 class="guest-display-title" id="guestDisplayTitle">आदरणीय पाहुन अतिथि देवो भवः</h4>
+                    </div>
+                </div>
+
+                <span class="invite-quote">मांगलिक शुभ विवाह महोत्सव</span>
+                <p class="invite-lead">परमपिता परमात्माक अनुकम्पा आ पूर्वजक शुभाशीर्वाद सँ हमरा परिवारक परम सौभाग्य अछि जे</p>
+
+                <h1 class="couple-names maithil-couple-names">
+                    <span class="groom-name">माधव</span>
+                    <span class="ampersand">संग</span>
+                    <span class="bride-name">जानकी</span>
+                </h1>
+
+                <!-- Mithila Mool & Gotra Details -->
+                <div class="mool-gotra-box">
+                    <div class="mool-col">
+                        <span class="mool-label">वर (Dulha)</span>
+                        <strong>माधव मिश्रा</strong>
+                        <span class="mool-sub">मूल: गंगौली • गोत्र: शांडिल्य</span>
+                    </div>
+                    <div class="mool-knot">🪷 परिणय 🪷</div>
+                    <div class="mool-col">
+                        <span class="mool-label">कन्या (Dulhan)</span>
+                        <strong>जानकी झा</strong>
+                        <span class="mool-sub">मूल: खौआल • गोत्र: कश्यप</span>
+                    </div>
+                </div>
+
+                <div class="royal-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon">🐟 🪷 🐟</span>
+                    <span class="divider-line"></span>
+                </div>
+
+                <div class="wedding-details-badge">
+                    <div class="date-badge">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>सोमवार, 22 फरवरी 2027 (माघ शुक्ल पूर्णिमा)</span>
+                    </div>
+                    <div class="venue-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>मिथिला हेरिटेज वाटिका, मधुबनी, बिहार</span>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Timer -->
+                <div class="countdown-container">
+                    <h3 class="countdown-title">शुभ लग्नक पावन बेला</h3>
+                    <div class="timer-grid" id="timerGrid">
+                        <div class="timer-box">
+                            <span class="timer-num" id="days">00</span>
+                            <span class="timer-label">दिन</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="hours">00</span>
+                            <span class="timer-label">घंटा</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="minutes">00</span>
+                            <span class="timer-label">मिनट</span>
+                        </div>
+                        <div class="timer-colon">:</div>
+                        <div class="timer-box">
+                            <span class="timer-num" id="seconds">00</span>
+                            <span class="timer-label">सेकंड</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Action Buttons -->
+                <div class="action-buttons-hero">
+                    <a href="#events" class="royal-btn primary-btn"><i class="fas fa-calendar-check"></i> मांगलिक कार्यक्रम</a>
+                    <a href="#rsvp" class="royal-btn secondary-btn"><i class="fas fa-envelope-open-text"></i> उपस्थिति स्वीकारू (RSVP)</a>
+                    <button id="whatsappShareBtn" class="royal-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> नेवता भेजू (WhatsApp)</button>
+                    <button id="celebrateBtn" class="royal-btn celebration-btn"><i class="fas fa-spa"></i> 🎆 मंगल आशीर्वाद</button>
+                    <button id="addToCalBtn" class="royal-btn outline-btn"><i class="far fa-bell"></i> कैलेंडर मे जोड़ू</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auspicious Maithili Invitation Letter -->
+        <section class="invitation-letter-section">
+            <div class="section-card letter-card madhubani-card">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <h2 class="section-heading">विनम्र निमंत्रण (नेवता)</h2>
+                <div class="gold-line"></div>
+
+                <p class="letter-text">
+                    "अहाँक चरण रज हमरा आंगन मे पड़य, आ अहाँक शुभाशीर्वाद सँ वर-कन्याक नव दांपत्य जीवन सुखमय, समृद्ध आ मंगलमय बनय — एहि हेतु हम सब सपरिवार अहाँक सादर आमंत्रित करैत छी।"
+                </p>
+                <div class="families-wrapper">
+                    <div class="family-column">
+                        <h4>वर पक्ष (Groom's Family)</h4>
+                        <p class="family-names">श्रीमती शारदा देवी एवं श्री रामेश्वर मिश्रा</p>
+                        <p class="family-note">गंगौली, मधुबनी (हर्षित मन सँ सादर नेवता देबय छी)</p>
+                    </div>
+                    <div class="family-center-icon">
+                        🪷
+                    </div>
+                    <div class="family-column">
+                        <h4>कन्या पक्ष (Bride's Family)</h4>
+                        <p class="family-names">श्रीमती सुनयना देवी एवं श्री विद्याधर झा</p>
+                        <p class="family-note">खौआल, दरभंगा (अहाँक प्रतीक्षा मे नयन बिछौने)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Couple Section -->
+        <section class="couple-section" id="couple">
+            <h2 class="section-heading">वर-कन्या परिचय</h2>
+            <p class="section-subheading">मिथिलाक पावन माटि पर दुई संस्कार आ दुई परिवारक पवित्र मिलन</p>
+            <div class="gold-line"></div>
+
+            <div class="couple-cards-grid">
+                <!-- Groom Card -->
+                <div class="profile-card">
+                    <div class="profile-image-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="वर - माधव" class="profile-img">
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h3 class="profile-title">माधव मिश्रा</h3>
+                    <p class="profile-sub">सुपुत्र: श्रीमती शारदा देवी एवं श्री रामेश्वर मिश्रा</p>
+                    <p class="profile-bio">
+                        "माधव सा विद्यावान, सरल आ सनातन संस्कारक अनुगामी, जे अपन जीवनक नव अध्याय जनकनंदिनीक आशीर्वाद सँ शुरू करय जा रहल छथि।"
+                    </p>
+                </div>
+
+                <div class="couple-heart-divider">
+                    <div class="mandala-ring">
+                        🪷
+                    </div>
+                </div>
+
+                <!-- Bride Card -->
+                <div class="profile-card">
+                    <div class="profile-image-container">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="कन्या - जानकी" class="profile-img">
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h3 class="profile-title">जानकी झा</h3>
+                    <p class="profile-sub">सुपुत्री: श्रीमती सुनयना देवी एवं श्री विद्याधर झा</p>
+                    <p class="profile-bio">
+                        "जानकी सा सुशीला, मिथिलाक पावन लोककला आ संस्कृति मे रंगली, जे प्रेम आ समर्पणक दीप प्रज्वलित करबाक लेल उत्सुक छथि।"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Timeline / Maithil Vivah Rituals -->
+        <section class="events-section" id="events">
+            <h2 class="section-heading">मांगलिक वैवाहिक अनुष्ठान</h2>
+            <p class="section-subheading">मिथिलाक प्राचीन परंपरा अनुसार संपन्न होय बला पावन उत्सव</p>
+            <div class="gold-line"></div>
+
+            <!-- Animated Maithil Baarat & Kohbar Banner -->
+            <div class="baraat-procession-banner" aria-label="मिथिलाक पाहुन व बारात">
+                <div class="baraat-scroll-track">
+                    <div class="baraat-group">
+                        <span class="procession-icon">🎺🎷</span>
+                        <span class="procession-text">शुभ विवाहक बारात</span>
+                        <span class="procession-icon">🥁</span>
+                        <span class="procession-icon">🏇👑</span>
+                        <span class="procession-label">माधवक बारात</span>
+                        <span class="procession-icon">🐘🪷</span>
+                        <span class="procession-icon">🎶</span>
+                        <span class="procession-icon doli">👑🌺 [ 👰 जानकीक कोहबर डोली ] 🌺👑</span>
+                        <span class="procession-icon">🦚🐟</span>
+                        <span class="procession-sparkle">✨🪷✨</span>
+                    </div>
+                    <div class="baraat-group">
+                        <span class="procession-icon">🎺🎷</span>
+                        <span class="procession-text">शुभ विवाहक बारात</span>
+                        <span class="procession-icon">🥁</span>
+                        <span class="procession-icon">🏇👑</span>
+                        <span class="procession-label">माधवक बारात</span>
+                        <span class="procession-icon">🐘🪷</span>
+                        <span class="procession-icon">🎶</span>
+                        <span class="procession-icon doli">👑🌺 [ 👰 जानकीक कोहबर डोली ] 🌺👑</span>
+                        <span class="procession-icon">🦚🐟</span>
+                        <span class="procession-sparkle">✨🪷✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Ritual 1: Siddhanta & Tilak -->
+                <div class="timeline-item">
+                    <div class="timeline-icon tilak-theme">
+                        📜
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag tilak-tag">पंजीकार सिद्धांत व तिलक</span>
+                        <h3 class="event-name">सिद्धांत व तिलकोत्सव</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> शुक्रवार, 19 फरवरी 2027 • पूर्वाह्न 10:30 बजे</p>
+                            <p><i class="fas fa-map-pin"></i> वर पक्ष निवास, गंगौली, मधुबनी</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>पहिरन (Dress Code):</strong> पाग, धोती-कुर्ता व पीत वस्त्र</p>
+                        </div>
+                        <p class="event-desc">पंजीकार द्वारा गोत्र-प्रवर व मूल शुद्धिक विधिवत अनुमोदन, पाग-दुपट्टा पहिनाय तिलक अर्पण एवं समधी मिलन।</p>
+                        <a href="https://maps.google.com/?q=Madhubani+Bihar" target="_blank" class="event-map-btn"><i class="fas fa-location-arrow"></i> स्थान देखू (View Location)</a>
+                    </div>
+                </div>
+
+                <!-- Ritual 2: Matri Puja & Tel-Hardi -->
+                <div class="timeline-item">
+                    <div class="timeline-icon hardi-theme">
+                        🌼
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag haldi-tag">मातृका पूजन व उबटन</span>
+                        <h3 class="event-name">मातृ पूजा व तेल-हरदी</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> रविवार, 21 फरवरी 2027 • दोपहर 01:00 बजे</p>
+                            <p><i class="fas fa-map-pin"></i> कुलदेवी गोसाँइघर, वाटिका प्रांगण</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>पहिरन:</strong> पारम्परिक पीयर/बसन्ती साड़ी व कुर्ता</p>
+                        </div>
+                        <p class="event-desc">गोसाँइ पूजा, सुहागिन महिला सभ द्वारा पारम्परिक लगन गीत गाबि कऽ वर-कन्याक तेल-हरदी उबटन अर्पण।</p>
+                        <a href="https://maps.google.com/?q=Madhubani+Bihar" target="_blank" class="event-map-btn"><i class="fas fa-location-arrow"></i> स्थान देखू</a>
+                    </div>
+                </div>
+
+                <!-- Ritual 3: Kanyadan, Sindoor & Kohbar -->
+                <div class="timeline-item highlight-item">
+                    <div class="timeline-icon wedding-theme">
+                        🔥
+                    </div>
+                    <div class="timeline-card main-wedding-card">
+                        <span class="event-tag wedding-tag">सप्तपदी व सिंदूरदान</span>
+                        <h3 class="event-name">शुभ विवाह, कन्यादान व सिंदूरदान</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> सोमवार, 22 फरवरी 2027</p>
+                            <p><i class="fas fa-clock"></i> द्वारपूजा: संध्या 06:30 | कन्यादान: रात्रि 09:15 | सिंदूरदान: रात्रि 11:30</p>
+                            <p><i class="fas fa-map-pin"></i> मुख्य मंडप, मिथिला हेरिटेज वाटिका, मधुबनी</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>पहिरन:</strong> मिथिलाक पारम्परिक लाल-पीत वेशभूषा</p>
+                        </div>
+                        <p class="event-desc">अग्नि साक्षी कऽ सात फेरा, लाजा होम (लावा छीटना), कन्यादान एवं मैथिल कुलक सर्वोपरि मांगलिक संस्कार सिंदूरदान।</p>
+                        <a href="https://maps.google.com/?q=Madhubani+Bihar" target="_blank" class="event-map-btn"><i class="fas fa-location-arrow"></i> स्थान देखू</a>
+                    </div>
+                </div>
+
+                <!-- Ritual 4: Kohbar Pravesh & Chauthari -->
+                <div class="timeline-item">
+                    <div class="timeline-icon kohbar-theme">
+                        🪷
+                    </div>
+                    <div class="timeline-card">
+                        <span class="event-tag kohbar-tag">कोहबर व प्रीतिभोज</span>
+                        <h3 class="event-name">कोहबर प्रवेश, चौठारी व प्रीतिभोज</h3>
+                        <div class="event-time-loc">
+                            <p><i class="far fa-calendar-check"></i> मंगलवार, 23 फरवरी 2027 • सायं 06:00 बजे सँ</p>
+                            <p><i class="fas fa-map-pin"></i> मिथिला सभागार वाटिका</p>
+                            <p class="event-dresscode"><i class="fas fa-tshirt"></i> <strong>पहिरन:</strong> भव्य पारम्परिक उत्सव परिधान</p>
+                        </div>
+                        <p class="event-desc">मधुबनी भित्तिचित्र युक्त कोहबर घर मे गौरी पूजन, सखि-सहेली सभक परिहास एवं समस्त पाहुनक लेल स्नेहभोज।</p>
+                        <a href="https://maps.google.com/?q=Madhubani+Bihar" target="_blank" class="event-map-btn"><i class="fas fa-location-arrow"></i> स्थान देखू</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-heading">मधुर संस्मरण</h2>
+            <p class="section-subheading">मिथिलाक संस्कृति, पावन बंधन आ प्रेममयी क्षणक झलक</p>
+            <div class="gold-line"></div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-caption="मिथिलाक पावन परंपरा आ परिणय सूत्र">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="क्षण 1" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="सुहाग आ सिंदूरक अनुपम आभा">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="क्षण 2" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="पावन अग्नि साक्षी कऽ सात फेरा">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80" alt="क्षण 3" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="कोहबरक रंग मे रंगला दांपत्य जीवन">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="क्षण 4" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="परिवारजन आ गुरुजनक शुभाशीर्वाद">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="क्षण 5" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-caption="सीता-रामेव पावन युगल जोड़ी">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="क्षण 6" loading="lazy">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="galleryModal" class="gallery-modal">
+                <span class="close-modal">&times;</span>
+                <img class="modal-content" id="modalImg" alt="Enlarged view">
+                <div id="modalCaption"></div>
+            </div>
+        </section>
+
+        <!-- Venue & Directions Section -->
+        <section class="venue-section" id="venue">
+            <h2 class="section-heading">शुभ स्थल व मार्ग-दर्शन</h2>
+            <p class="section-subheading">मिथिलाक पावन धरती पर अहाँक आगमनक उत्सुकता सँ प्रतीक्षा अछि</p>
+            <div class="gold-line"></div>
+
+            <div class="venue-grid">
+                <div class="venue-info-box">
+                    <div class="palace-icon">🪷</div>
+                    <h3>मिथिला हेरिटेज वाटिका</h3>
+                    <p class="venue-address">
+                        <i class="fas fa-map-pin"></i> स्टेशन रोड, विद्यापति नगर, मधुबनी, बिहार - 847211
+                    </p>
+                    <div class="venue-features">
+                        <div class="feat-item"><i class="fas fa-car"></i> पाहुन पार्किंग व वाहन व्यवस्था उपलब्ध</div>
+                        <div class="feat-item"><i class="fas fa-plane"></i> दरभंगा हवाई अड्डा (Darbhanga Airport) सँ 45 मिनट</div>
+                        <div class="feat-item"><i class="fas fa-train"></i> मधुबनी रेलवे स्टेशन सँ मात्र 10 मिनट</div>
+                    </div>
+                    <div class="venue-actions">
+                        <a href="https://maps.google.com/?q=Madhubani+Railway+Station" target="_blank" class="royal-btn primary-btn">
+                            <i class="fas fa-directions"></i> गूगल मैप्स पर रस्ता देखू
+                        </a>
+                        <button id="copyAddressBtn" class="royal-btn outline-btn">
+                            <i class="far fa-copy"></i> पता कॉपी करू
+                        </button>
+                    </div>
+                </div>
+
+                <div class="venue-map-box">
+                    <iframe 
+                        title="Wedding Venue Map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114524.23438466657!2d86.07775836250001!3d26.352433600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39edcd1d4c57e281%3A0xce1c63a0cf22e09!2sMadhubani%2C%20Bihar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="340" 
+                        style="border:0; border-radius: 12px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Form Section -->
+        <section class="rsvp-section" id="rsvp">
+            <div class="rsvp-card madhubani-card">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <h2 class="section-heading">उपस्थिति पुष्टि (RSVP)</h2>
+                <p class="section-subheading">पाहुनक सत्कारक समुचित प्रबंध हेतु कृपा कऽ अपन आगमनक सूचना अवश्य दियौक</p>
+                <div class="gold-line"></div>
+
+                <form id="rsvpForm" class="rsvp-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guestName"><i class="fas fa-user"></i> पाहुनक पूरा नाम (Full Name) *</label>
+                            <input type="text" id="guestName" required placeholder="उदा. पं. सूर्यनारायण झा">
+                        </div>
+                        <div class="form-group">
+                            <label for="guestPhone"><i class="fas fa-phone-alt"></i> मोबाइल / व्हाट्सएप नंबर *</label>
+                            <input type="tel" id="guestPhone" required placeholder="उदा. +91 98350 12345">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="attendanceStatus"><i class="fas fa-check-circle"></i> आगमनक स्थिति *</label>
+                            <select id="attendanceStatus" required>
+                                <option value="joyfully_attending">सपरिवार आनंदपूर्वक उपस्थित होयब</option>
+                                <option value="attending_solo">व्यक्तिगत उपस्थित होयब</option>
+                                <option value="regretfully_declined">असमर्थ छी (दूर सँ शुभाशीर्वाद प्रेषित)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guestCount"><i class="fas fa-users"></i> कुल सदस्य संख्या (Guest Count)</label>
+                            <input type="number" id="guestCount" min="1" max="10" value="2">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> जे अनुष्ठान मे अहाँक आगमन होयत:</label>
+                        <div class="checkbox-group">
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="सिद्धांत" checked>
+                                <span class="check-box"></span> सिद्धांत व तिलकोत्सव
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="हरदी" checked>
+                                <span class="check-box"></span> मातृ पूजा व तेल-हरदी
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="कन्यादान-सिंदूरदान" checked>
+                                <span class="check-box"></span> कन्यादान व सिंदूरदान
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox" name="events_attending" value="कोहबर-प्रीतिभोज" checked>
+                                <span class="check-box"></span> कोहबर व प्रीतिभोज
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guestMessage"><i class="fas fa-heart"></i> वर-कन्याक लेल शुभाशीर्वाद (Wishes)</label>
+                        <textarea id="guestMessage" rows="3" placeholder="अपन स्नेहिल शुभाशीर्वाद एहि ठाम लिखू..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="royal-btn primary-btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> नेवता स्वीकारू आ आशीर्वाद भेजू
+                        </button>
+                    </div>
+                </form>
+
+                <div id="rsvpSuccessAlert" class="rsvp-success-msg" style="display:none;">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>कोटि-कोटि धन्यवाद! अहाँक नेवता स्वीकार भेल!</h3>
+                    <p>अहाँक आगमन हमरा समस्त मिथिला परिवारक लेल परम सौभाग्य होयत।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishes & Blessings Wall -->
+        <section class="wishes-wall-section" id="wishes">
+            <h2 class="section-heading">नेह आ आशीर्वादक पावन संदेश</h2>
+            <p class="section-subheading">आदरणीय पाहुन व स्वजन सभक स्नेहिल आशीर्वाद</p>
+            <div class="gold-line"></div>
+
+            <div class="wishes-grid" id="wishesGrid">
+                <div class="wish-card">
+                    <p class="wish-text">"सीता-रामक पावन कृपा माधव आ जानकी पर सदा बनल रहय। दांपत्य जीवन मे विद्या, विनय आ अखंड सौभाग्यक वृद्धि हो।"</p>
+                    <span class="wish-author">— पं. भुवनेश्वर मिश्र व परिवार (दरभंगा)</span>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">"वर-कन्याक जोड़ी अखंड सौभाग्यवती रहय। मिथिलाक पावन कोहबर मे गौरी-शंकरक निरंतर वास रहय!"</p>
+                    <span class="wish-author">— नानी जी व नाना जी (मधुबनी)</span>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">"हृदय सँ अनंत शुभकामना। बारात व विवाह अनुष्ठान मे सम्मिलित होयबाक लेल अत्यंत उत्सुक छी!"</p>
+                    <span class="wish-author">— राजीव झा व संगिनी</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="royal-footer madhubani-footer">
+            <div class="footer-ganesha">॥ श्री सीतारामाभ्यां नमः ॥</div>
+            <h3 class="footer-names">माधव 🪷 जानकी</h3>
+            <p class="footer-tagline">22 फरवरी 2027 • मधुबनी (मिथिलांचल), बिहार</p>
+            <p class="footer-hashtags">#MadhavWedsJanki &bull; #MithilaVivah &bull; #MaithilMatrimony</p>
+            <div class="footer-contacts">
+                <p>यातायात, आवास व प्रवास सम्बन्धी सहयोगक लेल संपर्क सूत्र:</p>
+                <p><i class="fas fa-phone"></i> +91 98350 00000 / +91 98350 11111</p>
+            </div>
+            <div class="footer-bottom">
+                <p>मिथिलाक पारंपरिक श्रद्धा आ अनुराग सँ समर्पित</p>
+                <button id="adminPortalBtn" class="admin-portal-link"><i class="fas fa-lock"></i> पाहुन सूची (Host Admin Portal)</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- WHATSAPP SHARE & PERSONALIZED LINK MODAL -->
+    <div id="shareModal" class="royal-modal" style="display:none;" aria-hidden="true">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="share-modal-card madhubani-card">
+            <span class="close-share-modal" id="closeShareModal">&times;</span>
+            <div class="share-modal-header">
+                <i class="fab fa-whatsapp whatsapp-icon-large"></i>
+                <h3>व्हाट्सएप नेवता जनरेटर (WhatsApp Invite)</h3>
+                <p>पाहुनक नाम लिखू आ हुनका नाम सँ विशेष मैथिली नेवता भेजू!</p>
+            </div>
+
+            <div class="share-form-group">
+                <label for="inviteGuestInput"><i class="fas fa-user-tag"></i> पाहुनक नाम (उदा. झा जी, शर्मा परिवार, चाचा जी)</label>
+                <input type="text" id="inviteGuestInput" placeholder="पाहुनक नाम एहि ठाम लिखू...">
+            </div>
+
+            <div class="share-preview-box">
+                <span class="preview-badge"><i class="fas fa-eye"></i> नेवताक प्रारूप (Preview):</span>
+                <p class="preview-msg-text" id="previewMsgText"></p>
+            </div>
+
+            <div class="share-modal-actions">
+                <a id="directWhatsappSendBtn" href="#" target="_blank" class="royal-btn whatsapp-send-action">
+                    <i class="fab fa-whatsapp"></i> व्हाट्सएप सँ नेवता भेजू
+                </a>
+                <button id="copyShareLinkBtn" class="royal-btn outline-btn">
+                    <i class="far fa-copy"></i> लिंक मात्र कॉपी करू
+                </button>
+            </div>
+            <p id="shareCopyAlert" class="share-copy-alert" style="display:none;"><i class="fas fa-check"></i> लिंक कॉपी भऽ गेल!</p>
+        </div>
+    </div>
+
+    <!-- RSVP ADMIN DASHBOARD MODAL -->
+    <div id="adminModal" class="royal-modal" style="display:none;" aria-hidden="true">
+        <div class="modal-backdrop" id="adminModalBackdrop"></div>
+        <div class="admin-modal-card">
+            <span class="close-share-modal" id="closeAdminModal">&times;</span>
+            <div class="admin-modal-header">
+                <i class="fas fa-chart-pie admin-icon"></i>
+                <h3>पाहुन व आमंत्रण प्रबंधक (RSVP Manager)</h3>
+                <p>उपस्थित होय बला पाहुनक संख्या आ विवरण</p>
+            </div>
+
+            <div class="admin-stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="statTotalRsvp">0</span>
+                    <span class="stat-title">कुल प्रतिक्रिया</span>
+                </div>
+                <div class="stat-card attending-card">
+                    <span class="stat-number" id="statAttendingCount">0</span>
+                    <span class="stat-title">उपस्थित परिवार</span>
+                </div>
+                <div class="stat-card headcount-card">
+                    <span class="stat-number" id="statTotalHeadcount">0</span>
+                    <span class="stat-title">कुल पाहुन संख्या</span>
+                </div>
+                <div class="stat-card decline-card">
+                    <span class="stat-number" id="statDeclinedCount">0</span>
+                    <span class="stat-title">असमर्थ</span>
+                </div>
+            </div>
+
+            <div class="admin-actions-bar">
+                <button id="exportCsvBtn" class="royal-btn primary-btn"><i class="fas fa-file-excel"></i> एक्सेल मे डाउनलोड करू (CSV)</button>
+                <button id="addSampleRsvpBtn" class="royal-btn outline-btn"><i class="fas fa-magic"></i> परीक्षण डेटा जोड़ू</button>
+                <button id="clearRsvpsBtn" class="royal-btn danger-btn"><i class="fas fa-trash-alt"></i> सूची साफ करू</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="rsvp-table" id="rsvpTable">
+                    <thead>
+                        <tr>
+                            <th>पाहुनक नाम</th>
+                            <th>फोन नंबर</th>
+                            <th>स्थिति</th>
+                            <th>सदस्य</th>
+                            <th>कार्यक्रम</th>
+                            <th>आशीर्वाद संदेश</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rsvpTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
+
