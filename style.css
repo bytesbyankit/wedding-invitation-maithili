@@ -4,19 +4,22 @@
    ============================================================ */
 
 :root {
-    --color-mithila-red-dark: #3a0d0a;
-    --color-mithila-red: #8b1e19;
-    --color-mithila-red-light: #b03a2e;
-    --color-mithila-yellow: #e5a93c;
-    --color-mithila-yellow-light: #f9e79f;
-    --color-mithila-green: #194d33;
-    --color-kora-cream: #fbf5e6;
-    --color-kora-white: #fffdf9;
-    --color-charcoal: #261c14;
-    --color-text-muted: #5d4a3e;
-    --border-madhubani: 2px solid #8b1e19;
-    --shadow-mithila: 0 10px 35px rgba(58, 13, 10, 0.15);
-    --radius-mithila: 16px;
+    --color-mithila-red-dark: #2a0907;
+    --color-mithila-red: #7d1c16;
+    --color-mithila-red-light: #9c2720;
+    --color-mithila-yellow: #c97f18;
+    --color-mithila-yellow-light: #f4d48a;
+    --color-mithila-green: #144229;
+    --color-kora-cream: #fcf7eb;
+    --color-kora-white: #ffffff;
+    --color-charcoal: #1e1713;
+    --color-text-muted: #615045;
+    --border-madhubani: 1px solid #7d1c16;
+    --shadow-mithila: 0 4px 18px rgba(42, 9, 7, 0.08);
+    --radius-mithila: 14px;
+    --radius-btn: 8px;
+    --radius-sm: 4px;
+    --ease-craft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -69,29 +72,30 @@ body {
 }
 
 .control-btn {
-    background: linear-gradient(135deg, #e5a93c 0%, #fff1b8 50%, #c48820 100%);
-    color: var(--color-mithila-red-dark);
-    border: 1px solid #f9e79f;
-    border-radius: 30px;
-    padding: 10px 16px;
+    background: #3d0d09;
+    color: var(--color-mithila-yellow-light);
+    border: 1px solid rgba(201, 127, 24, 0.35);
+    border-radius: var(--radius-btn);
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     gap: 8px;
     font-family: 'Marcellus', serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    font-size: 0.88rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: background 0.18s var(--ease-craft), transform 0.18s var(--ease-craft), border-color 0.18s var(--ease-craft);
 }
 
 .control-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 24px rgba(229, 169, 60, 0.6);
+    transform: translateY(-1px);
+    background: #4f110c;
+    border-color: var(--color-mithila-yellow);
 }
 
 .control-btn.active {
-    background: var(--color-mithila-red-light);
+    background: var(--color-mithila-red);
     color: #fff;
     border-color: var(--color-mithila-yellow);
 }
@@ -502,7 +506,6 @@ body {
     line-height: 1.15;
     color: var(--color-mithila-red);
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(229, 169, 60, 0.35);
 }
 
 .ampersand {
@@ -595,8 +598,8 @@ body {
     gap: 10px;
     background: #fdfaf0;
     border: 1px solid rgba(139, 30, 25, 0.3);
-    border-radius: 30px;
-    padding: 8px 24px;
+    border-radius: var(--radius-btn);
+    padding: 8px 18px;
 }
 
 .date-badge i, .venue-badge i {
@@ -608,10 +611,10 @@ body {
     margin: 35px auto 30px;
     padding: 22px 16px;
     background: linear-gradient(135deg, var(--color-mithila-red-dark) 0%, var(--color-mithila-red) 100%);
-    border-radius: 14px;
-    border: 2px solid var(--color-mithila-yellow);
+    border-radius: var(--radius-mithila);
+    border: 1px solid var(--color-mithila-yellow);
     color: #fff;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
     max-width: 650px;
 }
 
@@ -619,7 +622,7 @@ body {
     font-family: 'Rozha One', serif;
     font-size: 1.25rem;
     color: var(--color-mithila-yellow-light);
-    letter-spacing: 1.5px;
+    letter-spacing: 0.05em;
     margin-bottom: 20px;
 }
 
@@ -631,40 +634,36 @@ body {
 }
 
 .timer-box {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(229, 169, 60, 0.5);
-    border-radius: 10px;
-    padding: 12px 16px;
-    min-width: 76px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(229, 169, 60, 0.35);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 74px;
     text-align: center;
 }
 
 .timer-num {
     display: block;
-    font-family: 'Rozha One', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-family: 'Marcellus', serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 2.1rem;
+    font-weight: 600;
     color: #fff4cc;
     line-height: 1;
     margin-bottom: 4px;
 }
 
 .timer-label {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .timer-colon {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 600;
     color: var(--color-mithila-yellow-light);
-    animation: blink 1.2s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    opacity: 0.85;
 }
 
 .action-buttons-hero {
@@ -681,14 +680,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
-    border-radius: 30px;
+    padding: 11px 22px;
+    border-radius: var(--radius-btn);
     font-family: 'Marcellus', 'Yatra One', serif;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.18s var(--ease-craft), transform 0.18s var(--ease-craft), border-color 0.18s var(--ease-craft);
 }
 
 .primary-btn {
